@@ -33,9 +33,16 @@ RUN apt-get install -y zsh && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 COPY shell /shell
+ENV DEBIAN_FRONTEND=noninteractive
+
+ARG TZ=
+RUN TZ=${TZ} /shell/install-timezone.sh
 
 ARG NODE_MAJOR=
 RUN NODE_MAJOR=${NODE_MAJOR} /shell/install-node.sh
 
 ARG PYTHON_MAJOR=
 RUN PYTHON_MAJOR=${PYTHON_MAJOR} /shell/install-python.sh
+
+ARG ODOO_VERSION=
+RUN ODOO_VERSION=${ODOO_VERSION} /shell/install-odoo.sh
