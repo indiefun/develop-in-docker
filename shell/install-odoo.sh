@@ -21,3 +21,4 @@ apt-get install -y libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
 npm install --global rtlcss
 git clone -b ${ODOO_VERSION} --single-branch --depth=1 https://github.com/odoo/odoo.git
 pip3 install -r odoo/requirements.txt
+chown -R ubuntu:ubuntu odoo

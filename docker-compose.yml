@@ -27,9 +27,9 @@ services:
       - postgres-data:/var/lib/postgresql/data
     environment:
       - TZ=Asia/Shanghai
-      - POSTGRES_USER=develop
-      - POSTGRES_DB=develop
-      - POSTGRES_PASSWORD=develop
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
 
 volumes:
   postgres-data:
