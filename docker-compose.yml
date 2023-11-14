@@ -6,6 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile
       target: develop
+      args:
+        - NODE_MAJOR=20 # 16 18 20 21 or empty
+        - PYTHON_MAJOR=3 # 2 3 or empty
     expose:
       - 22
     ports:

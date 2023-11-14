@@ -1,4 +1,4 @@
-# base image: ubuntu
+# base image
 FROM ubuntu:22.04 AS ubuntu
 
 RUN apt-get update && \
@@ -27,19 +27,15 @@ FROM ubuntu as develop
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y git
+    apt-get install -y git curl build-essential
 
 RUN apt-get install -y zsh && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-ARG NODE_MAJOR=20
-RUN apt-get install -y ca-certificates curl gnupg && \
-    mkdir -p /etc/apt/keyrings && \
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
-    apt-get update && \
-    apt-get install -y nodejs
-RUN npm install -g npm yarn
+COPY shell /shell
 
-RUN apt-get install -y python3 python3-pip && \
-    pip3 install --upgrade pip
+ARG NODE_MAJOR=
+RUN NODE_MAJOR=${NODE_MAJOR} /shell/install-node.sh
+
+ARG PYTHON_MAJOR=
+RUN PYTHON_MAJOR=${PYTHON_MAJOR} /shell/install-python.sh
