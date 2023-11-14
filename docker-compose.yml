@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  develop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: develop
+    expose:
+      - 22
+    volumes:
+      - ~/.ssh/authorized_keys:/home/ubuntu/.ssh/authorized_keys:ro
+
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_DB: odoo
+      POSTGRES_PASSWORD: odoo
+
+volumes:
+  postgres-data:
