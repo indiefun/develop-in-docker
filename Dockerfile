@@ -1,4 +1,4 @@
-# base image
+# base image: ubuntu
 FROM ubuntu:22.04 AS ubuntu
 
 RUN apt-get update && \
