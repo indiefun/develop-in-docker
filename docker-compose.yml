@@ -10,13 +10,16 @@ services:
         - TZ=Asia/Shanghai
         - NODE_MAJOR=20 # 16 18 20 21 or empty
         - PYTHON_MAJOR=3 # 2 3 or empty
+        - JDK_MAJOR=17 # 8 11 17 18 19 20 21 or empty
         - ODOO_VERSION=16.0 # 16.0 or empty, only support 16.0 now
     expose:
       - 22
     ports:
       - 10022:22
+      - 8069:8069
     volumes:
       - ~/.ssh/authorized_keys:/home/ubuntu/.ssh/authorized_keys:ro
+      - develop-data:/home/ubuntu/.cache
     environment:
       - TZ=Asia/Shanghai
 
@@ -27,9 +30,10 @@ services:
       - postgres-data:/var/lib/postgresql/data
     environment:
       - TZ=Asia/Shanghai
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=odoo
+      - POSTGRES_PASSWORD=odoo
 
 volumes:
+  develop-data:
   postgres-data:

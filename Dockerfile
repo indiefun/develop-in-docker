@@ -16,6 +16,10 @@ RUN mkdir -p /home/ubuntu/.ssh && \
     chmod -R 0700 /home/ubuntu/.ssh
 VOLUME [ "/home/ubuntu/.ssh" ]
 
+RUN mkdir -p /home/ubuntu/.cache && \
+    chown -R ubuntu:ubuntu /home/ubuntu/.cache
+VOLUME [ "/home/ubuntu/.cache" ]
+
 RUN mkdir -p /run/sshd
 EXPOSE 22
 
@@ -43,6 +47,9 @@ RUN NODE_MAJOR=${NODE_MAJOR} /shell/install-node.sh
 
 ARG PYTHON_MAJOR=
 RUN PYTHON_MAJOR=${PYTHON_MAJOR} /shell/install-python.sh
+
+ARG JDK_MAJOR=
+RUN JDK_MAJOR=${JDK_MAJOR} /shell/install-jdk.sh
 
 ARG ODOO_VERSION=
 RUN ODOO_VERSION=${ODOO_VERSION} /shell/install-odoo.sh
