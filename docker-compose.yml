@@ -16,10 +16,9 @@ services:
       - 22
     ports:
       - 10022:22
-      - 8069:8069
     volumes:
+      - develop-data:/home/ubuntu
       - ~/.ssh/authorized_keys:/home/ubuntu/.ssh/authorized_keys:ro
-      - develop-data:/home/ubuntu/.cache
     environment:
       - TZ=Asia/Shanghai
 
