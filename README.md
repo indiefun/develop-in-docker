@@ -40,3 +40,22 @@ some Dockerfile and docker-compose.yml templates for development in docker
     ```
     ssh ubuntu@localhost -p 10022
     ```
+
+# develop odoo 16.0 in idea ide
+* do all actions in usage
+* open idea ide to connect remote ssh
+* click open project, select ide client version in remote, and select `/home/ubuntu/odoo` as project path
+* install `python` and `codeium` plugins in ide client
+* config python sdk in project structure first, then add python interpreter in modules tabview
+* add run configuration, select bin path to odoo-bin in workspace root dir, then add parameters as following:
+    ```
+    --addons-path=addons
+    --db_host=postgres
+    --database=odoo
+    --db_user=odoo
+    --db_password=odoo
+    --db_port=5432
+    --init=$Prompt$
+    ```
+* if you run odoo first, you should input `base` in popup dialog to init base module, and press ok to skip init parameter in next run
+* do anything what you want, like add an addon or debug odoo program.
