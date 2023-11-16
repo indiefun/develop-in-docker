@@ -18,7 +18,8 @@ services:
       - 10022:22
     volumes:
       - develop-data:/home/ubuntu
-      - ~/.ssh/authorized_keys:/home/ubuntu/.ssh/authorized_keys:ro
+      - ~/.ssh:/home/ubuntu/.ssh:ro
+      - ~/.gitconfig:/home/ubuntu/.gitconfig:ro
     environment:
       - TZ=Asia/Shanghai
 
