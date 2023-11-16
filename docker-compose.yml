@@ -12,6 +12,7 @@ services:
         - PYTHON_MAJOR=3 # 2 3 or empty
         - JDK_MAJOR=17 # 8 11 17 18 19 20 21 or empty
         - ODOO_VERSION=16.0 # 16.0 or empty, only support 16.0 now
+    restart: unless-stopped
     expose:
       - 22
     ports:

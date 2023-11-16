@@ -36,6 +36,8 @@ RUN apt-get update && \
 RUN apt-get install -y zsh && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+RUN apt-get install -y postgresql-client
+
 COPY shell /shell
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -53,3 +55,4 @@ RUN JDK_MAJOR=${JDK_MAJOR} /shell/install-jdk.sh
 
 ARG ODOO_VERSION=
 RUN ODOO_VERSION=${ODOO_VERSION} /shell/install-odoo.sh
+
