@@ -10,11 +10,13 @@ some Dockerfile and docker-compose.yml templates for development in docker
     ```
     git checkout -b dev
     ```
-* (optional) modify build args in docker-compose.yml, empty mean ignore install, default will install node@20.x and python@3.x
+* (optional) modify build args in docker-compose.yml, empty mean ignore install
     ```
     args:
         - NODE_MAJOR=20 # 16 18 20 21 or empty
         - PYTHON_MAJOR=3 # 2 3 or empty
+        - JDK_MAJOR=17 # 8 11 17 18 19 20 21 or empty
+        - ODOO_VERSION=16.0 # 16.0 or empty, only support 16.0 now
     ```
 * (optional) modify ports in docker-compose.yml if 10022 port is in used
     ```
